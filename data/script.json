@@ -1,12 +1,10 @@
-{
-    "data": [{
-        "keywords": "rainbows",
-        "response": "she doesn't even go here"
-    }, {
-        "keywords": "crack",
-        "response": "say crack again"
-    }, {
-        "keywords": "fetch",
-        "response": "stop trying to make fetch happen"
-    }]
-}
+[{
+	"keywords": "rainbows",
+	"response": "she doesn't even go here"
+}, {
+	"keywords": "crack",
+	"response": "say crack again"
+}, {
+	"keywords": "fetch",
+	"response": "stop trying to make fetch happen"
+}]

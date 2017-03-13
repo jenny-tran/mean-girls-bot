@@ -5,8 +5,7 @@ import request from 'request';
 import http from 'http';
 
 // Modules
-import responses from './responses.js';
-
+import responses, { getKeywords } from './responses.js';
 
 // Start Server
 http.createServer(() => {
@@ -19,7 +18,7 @@ console.log('Server listening on localhost:3000');
 
 // Config for bot
 var bot = new slackBot({
-    token: process.env.SLACK_TOKEN,
+    token: process.env.BOT_TOKEN,
     name: 'theplasticsbot'
 });
 
@@ -27,10 +26,15 @@ var bot = new slackBot({
 bot.on('start', function() {
     // bot.postMessageToGroup('test-bot', 'bot init');
     console.log('Bot starting');
+    getKeywords();
 });
 
 // Activity in channel
-
 bot.on('message', function(data) {
-    responses(data);
+
+    if (data.type === 'message') {
+        console.log(data);
+        // readMessage(data);
+        responses(data);
+    }
 });
