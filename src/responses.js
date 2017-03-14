@@ -1,28 +1,29 @@
 import script from '../data/script.json';
 
 let vars = {
-    url: '../data/script.json',
-    script: '',
-    message: {},
     keywords: []
 }
 
-
 export default function init(data) {
-    console.log(vars.keywords);
-    // console.log(data);
+    // console.log(vars.keywords);
 
-    // const text = data.text;
+    const text = data.text;
+    const textArray = text.split(' ');
 
-    for (const keyword in vars.keywords) {
-        console.log(keyword);
-        if (data.text.includes(keyword)) {
+    for (const index in vars.keywords) {
 
-            // postMessage();
-            console.log('response goes here');
+        let keyword = vars.keywords[index];
+
+        const matchingKey = textArray.filter(textItem => keyword === textItem);
+
+        if (matchingKey.length) {
+            findResponse(matchingKey);
         }
     }
-    // match(data)
+}
+
+function findResponse(key) {
+
 }
 
 function getSearchParam(response) {
@@ -31,31 +32,7 @@ function getSearchParam(response) {
     return response.replace(/\s+/g, '+');
 }
 
-// function detectMessage(incomingMessage) {
-//     console.log('detectMessage');
-//     if (incomingMessage.type == 'message') {
-//         return readMessage(incomingMessage);
-//     }
-// }
-
-function match(message, keyword) {
-    console.log('match');
-
-    // if (text.includes(keyword)) {
-    //     vars.message = message;
-    //
-    //     postMessage()
-    // }
-}
-
-function postMessage(response) {
-
-    console.log('postMessage');
-    bot.postMessageToChannel('test-bot', 'meow!');
-}
-
-
-export function getKeywords() {
+export function getKeywords(callback) {
     const responses = new Promise((resolve, reject) => {
                 resolve(script)
             });
@@ -71,12 +48,8 @@ export function getKeywords() {
             });
 };
 
+function postMessage(response) {
 
-
-function consoleLog(stuff) {
-    // console.log(stuff);
-}
-
-function findResponse(keyword) {
-    // Iterate through JSON and use keyword to spit out related response
+    console.log('postMessage');
+    bot.postMessageToChannel('test-bot', 'meow!');
 }
